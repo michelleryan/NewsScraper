@@ -1,7 +1,7 @@
 // Dependencies
 var express = require("express");
 var mongojs = require("mongojs");
-var cherrio = require("cheerio");
+var cheerio = require("cheerio");
 var request = require("request");
 var bodyParser = require("body-parser");
 
@@ -31,9 +31,9 @@ db.on("error", function(error) {
 
 // Routes
 // 1. At the root path, send a simple hello world message to the browser
-app.get("/", function(req, res) {
-  res.send("index.html");
-});
+// app.get("/", function(req, res) {
+//   res.send("Hello World");
+// });
 
 // 2. At the "/all" path, display every entry in the animals collection
 app.get("/all", function(req, res) {
@@ -45,6 +45,8 @@ app.get("/all", function(req, res) {
     }
     // Otherwise, send the result of this query to the browser
     else {
+      console.log("I am in the app.get/all in server.js");
+      console.log(found);
       res.json(found);
     }
   });
@@ -76,7 +78,7 @@ app.get("/scrape", function(req, res) {
             }
             else {
               // Otherwise, log the inserted data
-              console.log(inserted);
+              //console.log(inserted);
             }
           });
         }
