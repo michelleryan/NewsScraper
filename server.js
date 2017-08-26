@@ -5,8 +5,9 @@ var cheerio = require("cheerio");
 var request = require("request");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-//include my Headline.js
+//include my Headline.js and Comment.js
 var Headline = require("./models/headline");
+var Comment = require("./models/comment.js");
 
 //Leverage built in JS ES6 Promises
 mongoose.Promise = Promise;
