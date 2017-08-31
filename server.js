@@ -8,6 +8,7 @@ var mongoose = require("mongoose");
 //include my Headline.js and Comment.js
 var Headline = require("./models/headline");
 var Comment = require("./models/comment");
+//var Saved = require("./models/saved");
 
 //Leverage built in JS ES6 Promises
 mongoose.Promise = Promise;
@@ -146,6 +147,18 @@ app.get("/headlines", function(req, res){
   });
 });
 
+//get the saved headlines
+app.get("/savedHeadlines", function(req, res){
+  Headline.find({saveHeadline:true}, function(error, doc){
+    if(error) {
+      console.log("error in find saved headlines", error);
+    }
+    else{
+      res.json(doc);
+    }
+  });
+});
+
 // route to get the headline with the objectId for associated comment button
 app.get("/headlines/:id", function(req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
@@ -190,6 +203,35 @@ app.post("/headlines/:id", function(req, res){
   });
 });
 
+//route to create a new saved article
+app.post("/saved/:id", function(req, res){
+  console.log("I'm in the app.post route for saved");
+  //var newSaved = new Saved(req.body);
+  console.log("post saved headline", req.body);
+  console.log("id to update: ", req.params.id);
+  
+  //add the new comment and save to the database
+  // newSaved.save(function(error,doc){
+  //   if(error){
+  //     console.log("I have an error saving to db ", error)
+  //   }
+  //   else {
+      
+      Headline.update(req.params.id, {$set:{saveHeadline:true}} ).exec(function(err, doc){
+        if(err){
+          console.log("I have an error finding the specific object id ", err);
+        }
+        else{
+          //if no errors then update the browser
+          console.log("I updated my saveHeadline to 'true'", doc);
+          res.send(doc);
+          
+        }
+      });
+     // console.log("I just saved: ", doc);  //show what is being saved
+    //}
+ // });
+});
 
 // Set the app to listen on port 4000
 app.listen(4000, function() {

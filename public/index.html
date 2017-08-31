@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Scraper</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="../public/assets/css/style.css">
 </head>
 
 <body>
@@ -20,33 +20,37 @@
             </ul>
         </div>
     </nav>
-    <div id="wrapper">
-        <h1>Headlines</h1>
-        <!-- <div id="headlines"></div> -->
-        <div id="headlines">
-            <table class="bordered" id="dbdata">
-                <tr>
-                    <!-- <th>Title</th>
-                    <th>Link</th>
-                    <th>Summary</th>
-                    <th>Author</th> -->
-                </tr>
-            </table>
-
-        </div>
-        <!-- <div id="comments"></div> -->
-        <div class="card red darken-3" id="card">
-            <div class="card-content white-text">
-                <span class="card-title" id="comments"></span>
-            </div>
-            <div class="card-action">
+    <div class="container">
+        <div class="row">
+            <h1>Headlines</h1>
+            <!-- <div id="headlines"></div> -->
+            <div id="headlines">
+                <table class="bordered" id="dbdata">
+                    <tr>
+                        <!-- <th>Title</th>
+                        <th>Link</th>
+                        <th>Summary</th>
+                        <th>Author</th> -->
+                    </tr>
+                </table>
 
             </div>
         </div>
+        <div class="row">
+            <div class="col s4">
+                <div class="card red darken-3" id="card">
+                    <div class="card-content white-text">
+                        <span class="card-title" id="comments"></span>
+                    </div>
+                    <div class="card-action"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-        <script src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>

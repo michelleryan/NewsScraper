@@ -25,6 +25,10 @@ var HeadlineSchema = new Schema({
     comment: {
         type: Schema.Types.ObjectId,
         ref: "Comment"
+    },
+    saveHeadline:{
+        type: Boolean,
+        default: false
     }
 });
 

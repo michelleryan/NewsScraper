@@ -46,7 +46,8 @@ $(document).on("click", "#saveComment", function(){
         // $("#comments").append("<input id='titleinput name='title'>");
         // $("#comments").append("<textarea id='bodyinput' name='body'></textarea>");
         // $("#comments").append("<button value='" + data._id + "' id='savenote'>Save Comment</button>");
-        $("#comments").append("<span>" + data.title + "<span>");
+        //$("#comments").append("<div class='card red lighten-3' id='card'><div class='card-content white-text'>")
+        $("#comments").append("<span>" + data.title + "</span>");
         $("#comments").append("<p><textarea id='bodyinput' class='materialize-textarea' name='body'></textarea></p>");
         $(".card-action").append("<button value='" + data._id + "' id='savenote'>Save Comment</button>")
 
@@ -82,8 +83,9 @@ $(document).on("click", "#savenote", function() {
         // Log the response
         console.log(data);
         // Empty the notes section
-        $("#comments").empty();
-        $(".card-action").empty();
+        //$("#card").empty();
+         $("#comments").empty();
+         $(".card-action").empty();
 
       });
   
@@ -92,3 +94,14 @@ $(document).on("click", "#savenote", function() {
     $("#bodyinput").val("");
   });
   
+  $(document).on("click", "#save", function(){
+    var thisId = $(this).attr("value");
+    console.log("Clicked on this Save button: " , thisId);
+    $.ajax({
+      method:"POST",
+      url: "/saved/" + thisId
+      // data: {
+      //   saveHeadline:true
+      // }
+    });
+  });
