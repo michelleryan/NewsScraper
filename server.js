@@ -149,12 +149,16 @@ app.get("/headlines", function(req, res){
 
 //get the saved headlines
 app.get("/savedHeadlines", function(req, res){
+    console.log("I am in savedHeadlines route in server.js")
+    
   Headline.find({saveHeadline:true}, function(error, doc){
     if(error) {
       console.log("error in find saved headlines", error);
     }
     else{
+      console.log(doc);
       res.json(doc);
+
     }
   });
 });
