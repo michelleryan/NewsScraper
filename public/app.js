@@ -53,6 +53,7 @@ $(document).on("click", "#scrapeHeadlines", function(){
 $(document).on("click", "#savedPage", function(){
   console.log("I clicked on the Saved Headlines button on the index page")
   $("#headlines").empty();  //remove the headlines not saved from the view
+  $("#savedHeadlines").empty(); //remove any previous saved headlines
   // $.ajax({
   //   method:"GET",
   //   url:"/savedHeadlines",
