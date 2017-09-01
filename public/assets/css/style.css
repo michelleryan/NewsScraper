@@ -1,3 +1,21 @@
-.container {
-    background-color: black
+body {
+    background-image: url("./images/cards3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    color: white;
+    font-style: bold;
+}
+
+th {
+    color: white;
+    font-style: bold;
+    font-size: 24px;
+}
+
+tr {
+    color: whitesmoke;
+    font-size: 20px;
 }

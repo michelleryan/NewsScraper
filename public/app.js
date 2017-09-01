@@ -123,3 +123,14 @@ $(document).on("click", "#savenote", function() {
       // }
     });
   });
+
+  //delete saved documents
+  $(document).on("click", "#delete", function(){
+    var thisId = $(this).attr("value");
+    $.ajax({
+      method: "POST",
+      url: "/delete/" + thisId
+    }).done(function(){
+      console.log("need to re-display data now");
+    });
+  });

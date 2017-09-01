@@ -237,6 +237,37 @@ app.post("/saved/:id", function(req, res){
  // });
 });
 
+//route to delete saved article
+app.post("/delete/:id", function(req, res){
+  console.log("I'm in the app.post route for delete");
+  //var newSaved = new Saved(req.body);
+  console.log("post to delete", req.body);
+  console.log("id to update: ", req.params.id);
+  
+  //add the new comment and save to the database
+  // newSaved.save(function(error,doc){
+  //   if(error){
+  //     console.log("I have an error saving to db ", error)
+  //   }
+  //   else {
+      
+      Headline.update(req.params.id, {$set:{saveHeadline:false}} ).exec(function(err, doc){
+        if(err){
+          console.log("I have an error finding the specific object id ", err);
+        }
+        else{
+          //if no errors then update the browser
+          console.log("I updated my saveHeadline to 'false'", doc);
+          res.send(doc);
+          
+        }
+      });
+     // console.log("I just saved: ", doc);  //show what is being saved
+    //}
+ // });
+});
+
+
 // Set the app to listen on port 4000
 app.listen(4000, function() {
   console.log("App running on port 4000!");
