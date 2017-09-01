@@ -26,8 +26,8 @@ app.use(bodyParser.urlencoded({
 
 // Database configuration
 // Save the URL of our database as well as the name of our collection
-var databaseUrl = "scraper";
-var collections = ["scrapedData"];
+// var databaseUrl = "scraper";
+// var collections = ["scrapedData"];
 
 // // Use mongojs to hook the database to the db variable
 // var db = mongojs(databaseUrl, collections);
@@ -137,7 +137,8 @@ app.get("/scrape", function(req, res) {
 //get the headlines saved from mongoDB
 app.get("/headlines", function(req, res){
   //get all doc from the Headline array
-  Headline.find({}, function(error, doc){
+  Headline.find().sort({_id:-1}).
+  exec(function(error, doc){
     if(error){
       console.log("error in find all headlines", error);
     }
@@ -146,6 +147,7 @@ app.get("/headlines", function(req, res){
     }
   });
 });
+
 
 //get the saved headlines
 app.get("/savedHeadlines", function(req, res){
@@ -221,7 +223,7 @@ app.post("/saved/:id", function(req, res){
   //   }
   //   else {
       
-      Headline.update(req.params.id, {$set:{saveHeadline:true}} ).exec(function(err, doc){
+      Headline.update({_id:req.params.id}, {$set:{saveHeadline:true}} ).exec(function(err, doc){
         if(err){
           console.log("I have an error finding the specific object id ", err);
         }
@@ -243,15 +245,8 @@ app.post("/delete/:id", function(req, res){
   //var newSaved = new Saved(req.body);
   console.log("post to delete", req.body);
   console.log("id to update: ", req.params.id);
-  
-  //add the new comment and save to the database
-  // newSaved.save(function(error,doc){
-  //   if(error){
-  //     console.log("I have an error saving to db ", error)
-  //   }
-  //   else {
-      
-      Headline.update(req.params.id, {$set:{saveHeadline:false}} ).exec(function(err, doc){
+ 
+  Headline.update({_id:req.params.id}, {$set:{saveHeadline:false}} ).exec(function(err, doc){
         if(err){
           console.log("I have an error finding the specific object id ", err);
         }
@@ -262,9 +257,6 @@ app.post("/delete/:id", function(req, res){
           
         }
       });
-     // console.log("I just saved: ", doc);  //show what is being saved
-    //}
- // });
 });
 
 
