@@ -33,8 +33,8 @@ app.use(bodyParser.urlencoded({
 // var db = mongojs(databaseUrl, collections);
 
 //Database configuration with mongoose
-mongoose.connect("mongodb://localhost/week34day5mongoose");
-var db = mongoose.connection;
+mongoose.connect("mongodb://heroku_fpl41ksr:pqc91djlcafhpjj9m4rr5g34ih@ds121674.mlab.com:21674/heroku_fpl41ksr");
+const db = mongoose.connection;
 
 // // This makes sure that any errors are logged if mongodb runs into an issue
 // db.on("error", function(error) {
