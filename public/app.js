@@ -14,40 +14,31 @@
 // displayResults();
 
 /**************************Using mongoose***************** */
+//get headlines from db
+$.getJSON("/headlines", function(data){
+  for(var i=0; i<11; i++){
+       $("#headlines").prepend("<tr><td>" + data[i].title + 
+           "</td><td>" + data[i].link + "</td><td>" + data[i].summary + "</td><td>"+ data[i].author + 
+           "</td><td><button class='btn modal-trigger red darken-2' data-target='#comments' type='button' id='saveComment' value =" + data[i]._id + ">Comment</button>" 
+           +"</td><td><button class='btn waves-effect waves-light red darken-2' type='button' id='save' value =" + data[i]._id + ">Save Article</button>"
+           + "</td></tr>");
+               }
+               $("#headlines").prepend("<tr><th>Title</th><th>Link</th><th>Summary</th><th>Author</th></><tr>");
+});   
+
 
 //when user clicks "Scrape Articles Button, get headlines"
 $(document).on("click", "#scrapeHeadlines", function(){
   $("#savedHeadlines").empty();  //remove any data to display only the scraped headlines
-  // $.ajax({
-  //   method:"GET",
-  //   url:"/scrape",
-  //   success: function(data){
-      $.getJSON("/headlines", function(data){
-        for(var i=0; i<11; i++){
-             $("#headlines").prepend("<tr><td>" + data[i].title + 
-                 "</td><td>" + data[i].link + "</td><td>" + data[i].summary + "</td><td>"+ data[i].author + 
-                 "</td><td><button class='btn modal-trigger red darken-2' data-target='#comments' type='button' id='saveComment' value =" + data[i]._id + ">Comment</button>" 
-                 +"</td><td><button class='btn waves-effect waves-light red darken-2' type='button' id='save' value =" + data[i]._id + ">Save Article</button>"
-                 + "</td></tr>");
-                     }
-                     $("#headlines").prepend("<tr><th>Title</th><th>Link</th><th>Summary</th><th>Author</th></><tr>");
-     });
-//    }
-
-  //});
-  //   $.getJSON("/headlines", function(data){
-  //     for(var i=0; i<11; i++){
-  //          $("#headlines").prepend("<tr><td>" + data[i].title + 
-  //              "</td><td>" + data[i].link + "</td><td>" + data[i].summary + "</td><td>"+ data[i].author + 
-  //              "</td><td><button class='btn modal-trigger red darken-2' data-target='#comments' type='button' id='saveComment' value =" + data[i]._id + ">Comment</button>" 
-  //              +"</td><td><button class='btn waves-effect waves-light red darken-2' type='button' id='save' value =" + data[i]._id + ">Save Article</button>"
-  //              + "</td></tr>");
-  //                  }
-  //                  $("#headlines").prepend("<tr><th>Title</th><th>Link</th><th>Summary</th><th>Author</th></><tr>");
-  //  });
-  //});
-   
+  $.ajax({
+    method:"GET",
+    url:"/scrape"
+  }).done(function(){
+    location.reload();
+  });
+  
 });
+
 
 //when user clicks "Saved Headlines", go to saved.html and display all saved headlines
 $(document).on("click", "#savedPage", function(){

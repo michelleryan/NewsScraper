@@ -57,10 +57,10 @@ db.once("open", function(){
 
 // Scrape data from one site and place it into the mongodb db
 app.get("/scrape", function(req, res) {
-  
+  console.log("I am in the scrape route");
 
    request("http://www.azcardinals.com/news/index.html", function(error, response, html){
-     var $=cheerio.load(html);
+     const $=cheerio.load(html);
      $("h3").each(function(i, element){
       
         var result = {}; //save an empty results object
@@ -82,6 +82,7 @@ app.get("/scrape", function(req, res) {
          }
          else{
            console.log(doc);
+          // res.json(doc);
          }
        });
 
